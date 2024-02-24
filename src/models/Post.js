@@ -5,5 +5,4 @@ class Post {
     this.content = content;
   }
 }
-
 module.exports = Post;

@@ -1,6 +1,6 @@
 const request = require("supertest");
-const app = require("../src/app");
-const Post = require("../src/models/Post");
+const app = require("../src/beckend/app");
+const Post = require("../src/beckend/controllers/models/Post");
 
 let postId;
 

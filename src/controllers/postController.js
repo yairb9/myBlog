@@ -8,6 +8,8 @@ const getAllPosts = (req, res) => {
 
 const createPost = (req, res) => {
   const { id, title, content } = req.body;
+  console.log(req.body);
+
   const newPost = new Post(id, title, content);
   posts.push(newPost);
   res.status(201).json(newPost);
@@ -15,6 +17,8 @@ const createPost = (req, res) => {
 
 const updatePost = (req, res) => {
   const id = req.params.id;
+
+  console.log(id);
   const { title, content } = req.body;
   const postToUpdate = posts.find((post) => post.id === id);
   if (!postToUpdate) {
@@ -28,6 +32,7 @@ const updatePost = (req, res) => {
 
 const deletePost = (req, res) => {
   const id = req.params.id;
+
   posts = posts.filter((post) => post.id !== id);
   res.send("Post deleted successfully");
 };
