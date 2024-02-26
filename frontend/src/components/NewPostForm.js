@@ -1,18 +1,39 @@
 import React, { useState } from "react";
 
-function NewPostForm({ onAddPost }) {
+function NewPostForm({ setPosts, posts }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddPost({ title, content, id: Date.now() });
-    setTitle("");
-    setContent("");
+
+    if (!title.trim() || !content.trim()) {
+      setError("Both title and content are required.");
+      return;
+    }
+    const post = { title, content };
+
+    fetch("http://localhost:4000/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts([...posts, data]);
+        setTitle("");
+        setContent("");
+        setError("");
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <input
         type="text"
         placeholder="Title"
