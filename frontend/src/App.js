@@ -6,12 +6,12 @@ import "./App.css";
 function App() {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  const getAllPosts = () => {
     fetch("http://localhost:4000/posts")
       .then((response) => response.json())
       .then((data) => setPosts(data))
       .catch((error) => console.error("Error fetching posts:", error));
-  }, []);
+  };
 
   const deletePost = (id) => {
     fetch(`http://localhost:4000/posts/${id}`, {
@@ -39,6 +39,8 @@ function App() {
       })
       .catch((error) => console.error("Error updating post:", error));
   };
+
+  useEffect(getAllPosts, []);
 
   return (
     <div className="App">

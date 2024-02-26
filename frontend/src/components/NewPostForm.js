@@ -5,15 +5,7 @@ function NewPostForm({ setPosts, posts }) {
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!title.trim() || !content.trim()) {
-      setError("Both title and content are required.");
-      return;
-    }
-    const post = { title, content };
-
+  const createPost = (post) => {
     fetch("http://localhost:4000/posts", {
       method: "POST",
       headers: {
@@ -29,6 +21,17 @@ function NewPostForm({ setPosts, posts }) {
         setError("");
       })
       .catch((error) => console.error("Error:", error));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!title.trim() || !content.trim()) {
+      setError("Both title and content are required.");
+      return;
+    }
+    const post = { title, content };
+    createPost(post);
   };
 
   return (
