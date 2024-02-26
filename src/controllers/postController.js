@@ -7,34 +7,36 @@ const getAllPosts = (req, res) => {
 };
 
 const createPost = (req, res) => {
-  const { id, title, content } = req.body;
+  const { title, content } = req.body;
   console.log(req.body);
-
+  const id = Date.now();
   const newPost = new Post(id, title, content);
   posts.push(newPost);
   res.status(201).json(newPost);
 };
 
 const updatePost = (req, res) => {
-  const id = req.params.id;
-
-  console.log(id);
+  const id = Number(req.params.id);
   const { title, content } = req.body;
-  const postToUpdate = posts.find((post) => post.id === id);
-  if (!postToUpdate) {
-    res.status(404).send("Post not found");
+  const post = posts.find((post) => post.id === id);
+  if (post) {
+    post.title = title;
+    post.content = content;
+    res.status(200).json(post);
   } else {
-    postToUpdate.title = title;
-    postToUpdate.content = content;
-    res.json(postToUpdate);
+    res.status(404).send("Post not found");
   }
 };
 
 const deletePost = (req, res) => {
-  const id = req.params.id;
-
-  posts = posts.filter((post) => post.id !== id);
-  res.send("Post deleted successfully");
+  const id = Number(req.params.id);
+  const postIndex = posts.findIndex((post) => post.id === id);
+  if (postIndex > -1) {
+    posts.splice(postIndex, 1);
+    res.status(200).json({ message: "Post deleted successfully" });
+  } else {
+    res.status(404).send("Post not found");
+  }
 };
 
 module.exports = {
