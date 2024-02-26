@@ -1,48 +1,58 @@
 const request = require("supertest");
-const app = require("../src/beckend/app");
-const Post = require("../src/beckend/controllers/models/Post");
+const app = require("../src/app");
 
-let postId;
+describe("API endpoints", () => {
+  let testPostId;
 
-describe("POST /posts", () => {
-  it("should create a new post", async () => {
-    const response = await request(app).post("/posts").send({
-      id: "1",
-      title: "Test Post",
-      content: "This is a test post",
-    });
-    expect(response.status).toBe(201);
-    expect(response.body.id).toBe("1");
-    expect(response.body.title).toBe("Test Post");
-    expect(response.body.content).toBe("This is a test post");
-    postId = response.body.id;
+  // Test for creating a new post
+  test("POST /posts should create a new post", async () => {
+    const newPost = { title: "New Test Title", content: "New test content" };
+    const response = await request(app)
+      .post("/posts")
+      .send(newPost)
+      .expect("Content-Type", /json/)
+      .expect(201);
+
+    expect(response.body).toHaveProperty("id");
+    expect(response.body.title).toEqual(newPost.title);
+    expect(response.body.content).toEqual(newPost.content);
+    testPostId = response.body.id; // Dynamically capture the post ID for use in subsequent tests
   });
-});
 
-describe("GET /posts", () => {
-  it("should get all posts", async () => {
-    const response = await request(app).get("/posts");
-    expect(response.status).toBe(200);
-    expect(response.body.length).toBe(1);
+  // Test for getting all posts
+  test("GET /posts should return all posts", async () => {
+    const response = await request(app)
+      .get("/posts")
+      .expect("Content-Type", /json/)
+      .expect(200);
+
+    // This test confirms the post created previously exists
+    const postExists = response.body.some((post) => post.id === testPostId);
+    expect(postExists).toBe(true);
   });
-});
 
-describe("PUT /posts/:id", () => {
-  it("should update an existing post", async () => {
-    const response = await request(app).put(`/posts/${postId}`).send({
-      title: "Updated Test Post",
-      content: "This is an updated test post",
-    });
-    expect(response.status).toBe(200);
-    expect(response.body.title).toBe("Updated Test Post");
-    expect(response.body.content).toBe("This is an updated test post");
+  // Test for updating an existing post
+  test("PUT /posts/:id should update the post", async () => {
+    const updatedPost = { title: "Updated Title", content: "Updated content" };
+    await request(app)
+      .put(`/posts/${testPostId}`)
+      .send(updatedPost)
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body.id).toEqual(testPostId);
+        expect(response.body.title).toEqual(updatedPost.title);
+        expect(response.body.content).toEqual(updatedPost.content);
+      });
   });
-});
 
-describe("DELETE /posts/:id", () => {
-  it("should delete a post", async () => {
-    const response = await request(app).delete(`/posts/${postId}`);
-    expect(response.status).toBe(200);
-    expect(response.text).toBe("Post deleted successfully");
+  // Test for deleting an existing post
+  test("DELETE /posts/:id should delete the post", async () => {
+    await request(app)
+      .delete(`/posts/${testPostId}`)
+      .expect(200)
+      .then((response) => {
+        expect(response.body).toEqual({ message: "Post deleted successfully" });
+      });
   });
 });
