@@ -8,6 +8,7 @@ const {
 
 const router = express.Router();
 
+// Posts API
 router.get("/", getAllPosts);
 router.post("/", createPost);
 router.put("/:id", updatePost);
