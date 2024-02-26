@@ -8,7 +8,6 @@ const getAllPosts = (req, res) => {
 
 const createPost = (req, res) => {
   const { title, content } = req.body;
-  console.log(req.body);
   const id = Date.now();
   const newPost = new Post(id, title, content);
   posts.push(newPost);

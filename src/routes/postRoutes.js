@@ -13,6 +13,4 @@ router.post("/", createPost);
 router.put("/:id", updatePost);
 router.delete("/:id", deletePost);
 
-router.get("/hello", () => console.log("HII"));
-
 module.exports = router;
