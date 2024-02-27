@@ -6,13 +6,12 @@ body {
 }
 
 .App {
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 900px;
   margin: auto;
   padding: 20px;
-}
-
-h1 {
-  color: #333;
 }
 
 form {
@@ -60,13 +59,61 @@ button:hover {
 }
 
 .post button {
-  background-color: #ff5722;
+  background-color: #f1edeb;
+  color: #1763af;
 }
 
 .post button:first-of-type {
-  background-color: #4caf50; /* Edit button */
+  color: #d8dde2;
+  background-color: #1763af;
 }
 
 .post button:hover {
   opacity: 0.9;
+}
+
+.sortButton {
+  background-color: 1763af;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 10px;
+  margin-top: 20px;
+  float: right;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sortButton:hover {
+  opacity: 0.8;
+}
+
+.sortContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+h1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #333;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,6 +1,25 @@
 const Post = require("../models/Post");
 
-const posts = [];
+const posts = [
+  {
+    id: "1709028953",
+    title: "Exploring the Depths of Generative AI",
+    content:
+      "Generative AI is transforming how we create and innovate, from art to code. Let's dive into its capabilities and potential.",
+  },
+  {
+    id: "1684825970",
+    title: "The Future of Creativity with AI",
+    content:
+      "How generative AI models like GPT and DALL·E are redefining artistic creation and opening new avenues for creators.",
+  },
+  {
+    id: "1698232190",
+    title: "AI Ethics: Navigating the New Frontier",
+    content:
+      "With great power comes great responsibility. Discussing the ethical considerations of generative AI and its impact on society.",
+  },
+];
 
 /**
  * Sends all posts as a JSON response.

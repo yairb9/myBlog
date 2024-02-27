@@ -13,6 +13,7 @@ function PostList({ posts, onDeletePost, onEditPost }) {
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
+  const [sortOrder, setSortOrder] = useState("desc");
 
   /**
    * Initiates editing mode for a selected post, setting its title and content
@@ -37,9 +38,29 @@ function PostList({ posts, onDeletePost, onEditPost }) {
     setEditingId(null);
   };
 
+  /**
+   * Toggles the sorting order of posts between ascending and descending.
+   */
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === "desc" ? "asc" : "desc");
+  };
+
+  /**
+   * Sorts posts by their ID in either ascending or descending order based on sortOrder.
+   */
+  const sortedPosts = posts.sort((a, b) => {
+    return sortOrder === "desc" ? b.id - a.id : a.id - b.id;
+  });
+
   return (
     <div className="PostList">
-      {posts.map((post) => (
+      <div className="sortContainer">
+        <button onClick={toggleSortOrder} className="sortButton">
+          Sort {sortOrder === "desc" ? "⬆️" : "⬇️"}
+        </button>
+      </div>
+
+      {sortedPosts.map((post) => (
         <div key={post.id} className="post">
           {editingId === post.id ? (
             <div>
@@ -58,6 +79,9 @@ function PostList({ posts, onDeletePost, onEditPost }) {
           ) : (
             <div>
               <h3>{post.title}</h3>
+              <div style={{ textAlign: "right", fontSize: "0.75rem" }}>
+                {new Date(parseInt(post.id)).toLocaleString()}
+              </div>
               <p>{post.content}</p>
               <button onClick={() => handleEdit(post)}>Edit</button>
               <button
