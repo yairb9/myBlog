@@ -2,13 +2,13 @@
   "name": "myblog-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "../frontend/index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node ../frontend/index.js",
+    "start": "node src/app.js",
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Yair Broyer",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
