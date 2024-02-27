@@ -1,9 +1,26 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import App from "./App";
+import "@testing-library/jest-dom";
 
-test("renders learn react link", () => {
+// Mock fetch API
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve([
+        { id: "1", title: "Test Post", content: "This is a test" },
+      ]),
+  })
+);
+
+beforeEach(() => {
+  fetch.mockClear();
+});
+
+// Test if the App component correctly fetches and displays posts when it load
+test("App loads and displays posts", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1));
+  const postTitle = await screen.findByText("Test Post");
+  expect(postTitle).toBeInTheDocument();
 });

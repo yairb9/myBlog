@@ -60,7 +60,12 @@ function PostList({ posts, onDeletePost, onEditPost }) {
               <h3>{post.title}</h3>
               <p>{post.content}</p>
               <button onClick={() => handleEdit(post)}>Edit</button>
-              <button onClick={() => onDeletePost(post.id)}>Delete</button>
+              <button
+                data-testid={`delete-${post.id}`}
+                onClick={() => onDeletePost(post.id)}
+              >
+                Delete
+              </button>
             </div>
           )}
         </div>
