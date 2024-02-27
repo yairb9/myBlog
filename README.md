@@ -26,6 +26,13 @@ Before running the project, make sure you have the following installed on your m
 
 ### Installation
 
+## Clone the Repository
+First, clone the repository to your local machine. Open a terminal and run:
+
+```bash
+git clone https://github.com/yairb9/myBlog.git
+```
+
 ## Backend Setup
 
 Follow these steps to set up the backend server:
@@ -33,7 +40,7 @@ Follow these steps to set up the backend server:
 1. Navigate to the backend directory of your project:
 
     ```bash
-    cd path/to/backend
+    cd backend
     ```
 
 2. Install the necessary dependencies by running:
@@ -57,7 +64,7 @@ Once the backend is up and running, you can set up the frontend:
 1. Open a new terminal window or tab and navigate to the frontend directory of your project:
 
     ```bash
-    cd path/to/frontend
+    cd frontend
     ```
 
 2. Install the necessary dependencies by running:
