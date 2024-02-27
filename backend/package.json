@@ -4,7 +4,7 @@
   "description": "",
   "main": "../frontend/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node ../frontend/index.js",
     "test": "jest"
   },
   "keywords": [],
