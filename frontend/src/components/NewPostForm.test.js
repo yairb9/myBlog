@@ -5,6 +5,18 @@ import "@testing-library/jest-dom";
 
 const mockSetPosts = jest.fn();
 
+beforeEach(() => {
+  jest.spyOn(global, "fetch").mockImplementation(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({ message: "Post added successfully" }),
+    })
+  );
+});
+
+afterEach(() => {
+  global.fetch.mockRestore();
+});
+
 describe("NewPostForm", () => {
   test("submits with valid data", async () => {
     render(<NewPostForm setPosts={mockSetPosts} posts={[]} />);
