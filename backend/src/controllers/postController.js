@@ -8,7 +8,7 @@ const posts = [
       "Generative AI is transforming how we create and innovate, from art to code. Let's dive into its capabilities and potential.",
   },
   {
-    id: "1684825970",
+    id: "1708092523",
     title: "The Future of Creativity with AI",
     content:
       "How generative AI models like GPT and DALL·E are redefining artistic creation and opening new avenues for creators.",
