@@ -82,6 +82,13 @@ Once the backend is up and running, you can set up the frontend:
 The frontend application should now be running and accessible via `http://localhost:3000`.
 
     ```
+## Running Tests
+
+To run the test suite for the backend/frontend, navigate to the respective directory and run:
+
+```bash
+npm test
+```
 
 
 ## Usage
