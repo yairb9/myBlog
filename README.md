@@ -9,6 +9,10 @@ This project is a simple blogging platform built using React for the frontend an
 - **Edit Posts:** Users can edit the title and content of existing posts.
 - **Delete Posts:** Users can remove posts.
 
+## hld
+
+![Alt text](image.png)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -17,49 +21,59 @@ These instructions will get you a copy of the project up and running on your loc
 
 Before running the project, make sure you have the following installed on your machine:
 - **Node.js and npm (Node Package Manager)**: You can download them from [here](https://nodejs.org/).
-- **React**: Ensure you have React installed. If you're setting up a new React project, Node and npm are required. React can be included in your project via npm by running `npm install react`.
+- **React.js**: Ensure you have React installed. If you're setting up a new React project, Node and npm are required. React can be included in your project via npm by running `npm install react`.
 
 
 ### Installation
 
-1. **Clone the repository**
+## Backend Setup
 
-    ```sh
-    git clone https://github.com/yairb9/myBlog.git
-    cd myBlog
+Follow these steps to set up the backend server:
+
+1. Navigate to the backend directory of your project:
+
+    ```bash
+    cd path/to/backend
     ```
 
-2. **Install Backend Dependencies**
+2. Install the necessary dependencies by running:
 
-    Navigate to the root directory of the project and install the required dependencies.
-
-    ```sh
+    ```bash
     npm install
     ```
 
-3. **Run the Backend Server**
+3. Start the backend server:
 
-    This will start the Node+Express server on `http://localhost:4000`.
-
-    ```sh
+    ```bash
     npm start
     ```
 
-4. **Install Frontend Dependencies**
+Your backend server should now be running and listening for requests. By default, it will listen on `http://localhost:4000` unless configured otherwise.
 
-    Open a new terminal window. Navigate to the frontend directory within the project and install the necessary dependencies.
+## Frontend Setup
 
-    ```sh
-    cd frontend
+Once the backend is up and running, you can set up the frontend:
+
+1. Open a new terminal window or tab and navigate to the frontend directory of your project:
+
+    ```bash
+    cd path/to/frontend
+    ```
+
+2. Install the necessary dependencies by running:
+
+    ```bash
     npm install
     ```
 
-5. **Run the Frontend Application**
+3. Start the frontend development server:
 
-    This will run the React application, typically on `http://localhost:3000`.
-
-    ```sh
+    ```bash
     npm start
+    ```
+
+The frontend application should now be running and accessible via `http://localhost:3000`.
+
     ```
 
 
